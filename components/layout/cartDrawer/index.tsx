@@ -16,6 +16,8 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Col, Input, Row } from "reactstrap";
+import { procurarCarrinho } from "../../../api/routes/procurarCarrinho";
+import { removerCamiseta } from "../../../api/routes/removerCamiseta";
 import { getCartCookie } from "../../../helpers/cookies/getCartCookie";
 import { ApiResponseType } from "../../../types/ApiResponseType";
 import { CamisetaType } from "../../../types/CamisetaType";
@@ -57,42 +59,47 @@ const CartDrawer: React.FC = () => {
     } else return <></>;
   };
 
+  const removeCamiseta = (
+    camisetaId: string | undefined,
+    compraId: string | undefined
+  ) => {
+    removerCamiseta(camisetaId, compraId).then((result) => {
+      if (result.status === 200) document.location.reload();
+    });
+  };
+
   useEffect(() => {
     if (getCartCookie()) {
-      axios
-        .get<ApiResponseType>(
-          `https://vendas-zdn-backend.herokuapp.com/carrinho/find/${getCartCookie()}`
-        )
-        .then((result) => {
-          setCartItemsCount(result.data.body.camisetas.length);
+      procurarCarrinho(getCartCookie()).then((result) => {
+        setCartItemsCount(result.body.camisetas.length);
 
-          const items: CamisetaType[] = [];
+        const items: CamisetaType[] = [];
 
-          result.data.body.camisetas.map((camiseta: any) => {
-            items.push({
-              nome: camiseta.nome,
-              numero: camiseta.numero,
-              cor: camiseta.cor,
-              id: camiseta.id,
-            });
-          });
-
-          const filteredItems = items.filter(function (item, pos) {
-            return items.indexOf(item) == pos;
-          });
-
-          filteredItems.map((item) => {
-            setCartItems((cartItems) => [
-              ...cartItems,
-              {
-                nome: item.nome,
-                numero: item.numero,
-                cor: item.cor,
-                id: item.id,
-              },
-            ]);
+        result.body.camisetas.map((camiseta: any) => {
+          items.push({
+            nome: camiseta.nome,
+            numero: camiseta.numero,
+            cor: camiseta.cor,
+            id: camiseta.id,
           });
         });
+
+        const filteredItems = items.filter(function (item, pos) {
+          return items.indexOf(item) == pos;
+        });
+
+        filteredItems.map((item) => {
+          setCartItems((cartItems) => [
+            ...cartItems,
+            {
+              nome: item.nome,
+              numero: item.numero,
+              cor: item.cor,
+              id: item.id,
+            },
+          ]);
+        });
+      });
     }
   }, []);
 
@@ -140,7 +147,10 @@ const CartDrawer: React.FC = () => {
           <DrawerBody>
             {cartItemsCount > 0 ? (
               cartItems.map((object) => (
-                <Row key={object.id}>
+                <Row
+                  key={object.id}
+                  style={{ marginTop: 10, paddingBottom: 25 }}
+                >
                   <Center>
                     <Col>
                       <ReturnTshirtImage color={object.cor} />
@@ -183,7 +193,7 @@ const CartDrawer: React.FC = () => {
                         <Col>
                           <Text
                             fontSize={"lg"}
-                            className="red-text-color"
+                            color={"green.600"}
                             fontWeight={"bold"}
                           >
                             R$ 36,00
@@ -191,7 +201,13 @@ const CartDrawer: React.FC = () => {
                         </Col>
 
                         <Col>
-                          <Button colorScheme="red" size="sm">
+                          <Button
+                            colorScheme="red"
+                            size="sm"
+                            onClick={() => {
+                              removeCamiseta(object.id, getCartCookie());
+                            }}
+                          >
                             Remover
                           </Button>
                         </Col>

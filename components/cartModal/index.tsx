@@ -24,6 +24,9 @@ import { criarCarrinho } from "../../api/routes/criarCarrinho";
 import { setCartCookie } from "../../helpers/cookies/setCartCookie";
 import { CarrinhoType } from "../../types/CarrinhoType";
 
+import { getCartCookie } from "../../helpers/cookies/getCartCookie";
+import { atualizarCarrinho } from "../../api/routes/atualizarCarrinho";
+
 type cartModalProps = {
   children: JSX.Element;
   color: string;
@@ -115,20 +118,36 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
     setLoadingHidden(!isLoadingHidden);
     setButtonsDisabled(!areButtonsDisabled);
 
-    const cart: CarrinhoType = {
-      items: [
-        {
-          nome: tshirtName,
-          numero: tshirtNumber,
-          cor: color,
-        },
-      ],
-    };
+    if (getCartCookie()) {
+      const cart: CarrinhoType = {
+        items: [
+          {
+            nome: tshirtName,
+            numero: tshirtNumber,
+            cor: color,
+          },
+        ],
+      };
 
-    criarCarrinho(cart).then((result) => {
-      setCartCookie(result.body.id);
-      document.location.reload();
-    });
+      atualizarCarrinho(getCartCookie(), cart).then((result) => {
+        document.location.reload();
+      });
+    } else {
+      const cart: CarrinhoType = {
+        items: [
+          {
+            nome: tshirtName,
+            numero: tshirtNumber,
+            cor: color,
+          },
+        ],
+      };
+
+      criarCarrinho(cart).then((result) => {
+        setCartCookie(result.body.id);
+        document.location.reload();
+      });
+    }
   };
 
   return (
