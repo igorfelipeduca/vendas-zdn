@@ -25,7 +25,7 @@ const ProductList: React.FC = () => {
         <Col>
           <Center>
             <Image
-              src="https://i.ibb.co/YZsZ0FM/camisa-branca-png.png"
+              src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
               boxSize={"25rem"}
             />
           </Center>

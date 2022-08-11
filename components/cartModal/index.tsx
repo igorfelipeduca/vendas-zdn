@@ -49,7 +49,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
         <>
           <Center>
             <Image
-              src="https://i.ibb.co/YZsZ0FM/camisa-branca-png.png"
+              src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
               boxSize={"10rem"}
             />
           </Center>

@@ -1,9 +1,9 @@
-import { Center, Heading, Text } from "@chakra-ui/react";
+import { Button, Center, Heading, Image, Link, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Header from "../components/layout/header";
 import styles from "../styles/Home.module.css";
 import ProductList from "../components/productList";
-import { FiTwitter } from "react-icons/fi";
+import { FaTwitter } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 
 const Home: NextPage = () => {
@@ -31,12 +31,40 @@ const Home: NextPage = () => {
 
       <hr />
 
-      <footer>
+      <footer
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 20,
+        }}
+      >
         <Center p={3}>
-          <FiTwitter style={{ marginRight: 5, fontSize: 24 }} />
-          <Text fontSize={"lg"} fontWeight="bold">
-            @outofnena
-          </Text>
+          <Button
+            colorScheme="twitter"
+            leftIcon={<FaTwitter />}
+            onClick={() => {
+              window.open("https://twitter.com/weluv_duca");
+            }}
+          >
+            <Text fontSize={"lg"} fontWeight="bold">
+              @weluv_duca
+            </Text>
+          </Button>
+        </Center>
+
+        <Center p={3}>
+          <Button
+            colorScheme="twitter"
+            leftIcon={<FaTwitter />}
+            onClick={() => {
+              window.open("https://twitter.com/outofnena");
+            }}
+          >
+            <Text fontSize={"lg"} fontWeight="bold">
+              @outofnena
+            </Text>
+          </Button>
         </Center>
       </footer>
     </>
