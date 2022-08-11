@@ -4,11 +4,15 @@ import Header from "../components/layout/header";
 import styles from "../styles/Home.module.css";
 import ProductList from "../components/productList";
 import { FiTwitter } from "react-icons/fi";
+import { Helmet } from "react-helmet";
 
 const Home: NextPage = () => {
   return (
     <>
       <Header />
+      <Helmet>
+        <title>ZDN</title>
+      </Helmet>
       <div className={styles.container}>
         <Center>
           <Heading

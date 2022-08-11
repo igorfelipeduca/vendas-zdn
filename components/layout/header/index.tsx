@@ -14,7 +14,13 @@ const Header: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <Image src={Zdn} height={50} width={50} id="zdn-header-img" />
+        <Image
+          src={Zdn}
+          height={50}
+          width={50}
+          id="zdn-header-img"
+          alt="ZDN Logo"
+        />
 
         <CartDrawer />
       </Row>
