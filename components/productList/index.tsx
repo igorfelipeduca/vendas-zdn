@@ -39,7 +39,7 @@ const ProductList: React.FC = () => {
 
           <Center>
             <Text fontSize={"2xl"} fontWeight="bold">
-              R$ 36,00
+              R$ 00,00
             </Text>
           </Center>
 
@@ -76,7 +76,7 @@ const ProductList: React.FC = () => {
 
             <Center>
               <Text fontSize={"2xl"} fontWeight="bold">
-                R$ 36,00
+                R$ 00,00
               </Text>
             </Center>
 
@@ -114,7 +114,7 @@ const ProductList: React.FC = () => {
 
             <Center>
               <Text fontSize={"2xl"} fontWeight="bold">
-                R$ 36,00
+                R$ 00,00
               </Text>
             </Center>
 

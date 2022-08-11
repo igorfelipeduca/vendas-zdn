@@ -38,6 +38,7 @@ const CartDrawer: React.FC = () => {
         <Image
           src="https://i.ibb.co/GWBBn9q/camisa-amarela-png.png"
           boxSize={"10rem"}
+          alt="Modelo amarelo da camiseta comemorativa da copa do ZDN"
         />
       );
     }
@@ -46,6 +47,7 @@ const CartDrawer: React.FC = () => {
         <Image
           src="https://i.ibb.co/wS85xP6/camisa-azul-png.png"
           boxSize={"10rem"}
+          alt="Modelo azul da camiseta comemorativa da copa do ZDN"
         />
       );
     }
@@ -54,6 +56,7 @@ const CartDrawer: React.FC = () => {
         <Image
           src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
           boxSize={"10rem"}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
         />
       );
     } else return <></>;
@@ -196,7 +199,7 @@ const CartDrawer: React.FC = () => {
                             color={"green.600"}
                             fontWeight={"bold"}
                           >
-                            R$ 36,00
+                            R$ 00,00
                           </Text>
                         </Col>
 

@@ -51,6 +51,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             <Image
               src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
               boxSize={"10rem"}
+              alt="Modelo branco da camiseta comemorativa da copa do ZDN"
             />
           </Center>
 
@@ -60,7 +61,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             </Text>
 
             <Text color={"green.600"} fontWeight="bold" fontSize={"2xl"}>
-              R$ 36,00
+              R$ 00,00
             </Text>
           </Center>
         </>
@@ -73,6 +74,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             <Image
               src="https://i.ibb.co/wS85xP6/camisa-azul-png.png"
               boxSize={"10rem"}
+              alt="Modelo azul da camiseta comemorativa da copa do ZDN"
             />
           </Center>
 
@@ -82,7 +84,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             </Text>
 
             <Text color={"green.600"} fontWeight="bold" fontSize={"2xl"}>
-              R$ 36,00
+              R$ 00,00
             </Text>
           </Center>
         </>
@@ -95,6 +97,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             <Image
               src="https://i.ibb.co/GWBBn9q/camisa-amarela-png.png"
               boxSize={"10rem"}
+              alt="Modelo amarelo da camiseta comemorativa da copa do ZDN"
             />
           </Center>
 
@@ -104,7 +107,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             </Text>
 
             <Text color={"green.600"} fontWeight="bold" fontSize={"2xl"}>
-              R$ 36,00
+              R$ 00,00
             </Text>
           </Center>
         </>
