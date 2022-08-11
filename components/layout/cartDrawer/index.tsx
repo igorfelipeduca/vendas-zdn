@@ -58,40 +58,42 @@ const CartDrawer: React.FC = () => {
   };
 
   useEffect(() => {
-    axios
-      .get<ApiResponseType>(
-        `https://vendas-zdn-backend.herokuapp.com/carrinho/find/${getCartCookie()}`
-      )
-      .then((result) => {
-        setCartItemsCount(result.data.body.camisetas.length);
+    if (getCartCookie()) {
+      axios
+        .get<ApiResponseType>(
+          `https://vendas-zdn-backend.herokuapp.com/carrinho/find/${getCartCookie()}`
+        )
+        .then((result) => {
+          setCartItemsCount(result.data.body.camisetas.length);
 
-        const items: CamisetaType[] = [];
+          const items: CamisetaType[] = [];
 
-        result.data.body.camisetas.map((camiseta: any) => {
-          items.push({
-            nome: camiseta.nome,
-            numero: camiseta.numero,
-            cor: camiseta.cor,
-            id: camiseta.id,
+          result.data.body.camisetas.map((camiseta: any) => {
+            items.push({
+              nome: camiseta.nome,
+              numero: camiseta.numero,
+              cor: camiseta.cor,
+              id: camiseta.id,
+            });
+          });
+
+          const filteredItems = items.filter(function (item, pos) {
+            return items.indexOf(item) == pos;
+          });
+
+          filteredItems.map((item) => {
+            setCartItems((cartItems) => [
+              ...cartItems,
+              {
+                nome: item.nome,
+                numero: item.numero,
+                cor: item.cor,
+                id: item.id,
+              },
+            ]);
           });
         });
-
-        const filteredItems = items.filter(function (item, pos) {
-          return items.indexOf(item) == pos;
-        });
-
-        filteredItems.map((item) => {
-          setCartItems((cartItems) => [
-            ...cartItems,
-            {
-              nome: item.nome,
-              numero: item.numero,
-              cor: item.cor,
-              id: item.id,
-            },
-          ]);
-        });
-      });
+    }
   }, []);
 
   return (
