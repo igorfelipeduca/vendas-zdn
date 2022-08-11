@@ -27,6 +27,7 @@ const ProductList: React.FC = () => {
             <Image
               src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
               boxSize={"25rem"}
+              alt="Modelo branco da camiseta comemorativa da copa do ZDN"
             />
           </Center>
 
@@ -63,6 +64,7 @@ const ProductList: React.FC = () => {
               <Image
                 src="https://i.ibb.co/wS85xP6/camisa-azul-png.png"
                 boxSize={"25rem"}
+                alt="Modelo azul da camiseta comemorativa da copa do ZDN"
               />
             </Center>
 
@@ -100,6 +102,7 @@ const ProductList: React.FC = () => {
               <Image
                 src="https://i.ibb.co/GWBBn9q/camisa-amarela-png.png"
                 boxSize={"25rem"}
+                alt="Modelo amarelo da camiseta comemorativa da copa do ZDN"
               />
             </Center>
 
