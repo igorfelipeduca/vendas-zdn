@@ -138,7 +138,7 @@ const CartDrawer: React.FC = () => {
           <DrawerBody>
             {cartItemsCount > 0 ? (
               cartItems.map((object) => (
-                <Row>
+                <Row key={object.id}>
                   <Center>
                     <Col>
                       <ReturnTshirtImage color={object.cor} />
