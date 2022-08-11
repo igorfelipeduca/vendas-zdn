@@ -15,6 +15,14 @@ a {
   box-sizing: border-box;
 }
 
+.red-text-color {
+  color: #fe0000;
+}
+
+.red-bg-color {
+  background: #fe0000;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -22,5 +30,15 @@ a {
   body {
     color: white;
     background: black;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+  body {
+    color: black;
+    background: white;
   }
 }
