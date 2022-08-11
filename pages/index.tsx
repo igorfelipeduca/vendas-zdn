@@ -12,6 +12,7 @@ const Home: NextPage = () => {
       <Header />
       <Helmet>
         <title>ZDN</title>
+        <meta name="description" content="Site oficial de vendas do ZDN"></meta>
       </Helmet>
       <div className={styles.container}>
         <Center>
