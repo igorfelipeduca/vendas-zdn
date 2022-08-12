@@ -4,13 +4,20 @@ import css from "./styles/checkoutItem.module.css";
 type CheckoutItemProps = {
   key?: string;
   color: string;
+  name: string;
+  number: string;
 };
 
 type tshirtImageProps = {
   color: string;
 };
 
-const CheckoutItem: React.FC<CheckoutItemProps> = ({ key, color }) => {
+const CheckoutItem: React.FC<CheckoutItemProps> = ({
+  key,
+  color,
+  number,
+  name,
+}) => {
   const ReturnTshirtImage: React.FC<tshirtImageProps> = ({ color }) => {
     if (color === "amarela") {
       return (
@@ -73,10 +80,10 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ key, color }) => {
           Camiseta ZDN Copa
         </Text>
         <Text fontSize={"lg"} mt={3} display="flex" alignItems={"center"}>
-          Nome: <b>Duca</b>
+          Nome: <b>{name}</b>
         </Text>
         <Text fontSize={"lg"}>
-          Número: <b>06</b>
+          Número: <b>{number}</b>
         </Text>
         <Text fontSize={"lg"}>
           Cor: <b>{returnWordWithCapitalLeter("azul")}</b>

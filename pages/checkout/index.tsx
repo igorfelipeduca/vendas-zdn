@@ -93,14 +93,19 @@ const Checkout: React.FC = () => {
             mt={10}
             className="red-text-color"
           >
-            CONCLUA SEU PEDIDO
+            CHECKOUT
           </Heading>
         </Center>
 
         <Center>
           <div>
             {items.map((item) => (
-              <CheckoutItem key={item.id} color={item.cor} />
+              <CheckoutItem
+                key={item.id}
+                color={item.cor}
+                name={item.nome}
+                number={item.numero}
+              />
             ))}
           </div>
         </Center>
