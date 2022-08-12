@@ -970,12 +970,32 @@
   dependencies:
     axios "*"
 
+"@types/browserify@^12.0.37":
+  version "12.0.37"
+  resolved "https://registry.yarnpkg.com/@types/browserify/-/browserify-12.0.37.tgz#f08312f17b4a7411441cce3a45434a0ce81c4da3"
+  integrity sha512-rGVZQhqlBMdnU0Wcq/RDO6+I1tppM42SqVq5ZEXiw2ft/A55Ro+dz4aKTy28gniwOIxZhRFqb5N+qnbg7J040g==
+  dependencies:
+    "@types/insert-module-globals" "*"
+    "@types/node" "*"
+
 "@types/dotenv@^8.2.0":
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-8.2.0.tgz#5cd64710c3c98e82d9d15844375a33bf1b45d053"
   integrity sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==
   dependencies:
     dotenv "*"
+
+"@types/insert-module-globals@*":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@types/insert-module-globals/-/insert-module-globals-7.0.2.tgz#0d44216a6489829897d7c8a97dbf8250444c95f8"
+  integrity sha512-b+XCUBUioZoveg4e8+D/wGVIvQcuV6TNHPy53aeY0YBydOOZhAtX2Sdr4x97uWKKy9Xrt0SUKsPxbT9e0u/x9Q==
+  dependencies:
+    "@types/node" "*"
+
+"@types/js-cookie@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-3.0.2.tgz#451eaeece64c6bdac8b2dde0caab23b085899e0d"
+  integrity sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -1000,6 +1020,11 @@
   integrity sha512-UXitWSmXCwhDmAKe7D3hNQtQaHeHt5L8LO1CB8GF8jlYVzOv5cBWDNqiJ+oPEWrWei3i3dkZtHY/bUtd0R/uOQ==
   dependencies:
     nanoid "*"
+
+"@types/node@*":
+  version "18.7.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.1.tgz#352bee64f93117d867d05f7406642a52685cbca6"
+  integrity sha512-GKX1Qnqxo4S+Z/+Z8KKPLpH282LD7jLHWJcVryOflnsnH+BtSDfieR6ObwBMwpnNws0bUK8GI7z0unQf9bARNQ==
 
 "@types/node@18.6.4":
   version "18.6.4"
@@ -2201,6 +2226,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+js-cookie@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
+  integrity sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -3021,11 +3051,6 @@ type-fest@^0.20.2:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
-
-typescript-cookie@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/typescript-cookie/-/typescript-cookie-1.0.4.tgz#22715aa394275e967fd734fa1417e24870504985"
-  integrity sha512-vZo252VmoEleD/dbE9Wb2lMK63V3M/8aqFbp2Pdb4Oxq8YqqADJ7iMh8THZenFXN+uZJPE8RXkztEaHkOptH4w==
 
 typescript@4.7.4:
   version "4.7.4"

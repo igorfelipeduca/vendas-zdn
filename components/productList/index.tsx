@@ -2,7 +2,6 @@ import { Col, Row } from "reactstrap";
 import {
   Center,
   Text,
-  Image,
   Skeleton,
   Button,
   useDisclosure,
@@ -10,10 +9,112 @@ import {
 import { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import CartModal from "../cartModal";
+import Image from "next/image";
+
+import BrancaFrente from "../../assets/branca-frente.png";
+import BrancaCostas from "../../assets/branca-costas.png";
+import AzulFrente from "../../assets/azul-frente.png";
+import AzulCostas from "../../assets/azul-costas.png";
+import AmarelaFrente from "../../assets/amarela-frente.png";
+import AmarelaCostas from "../../assets/amarela-costas.png";
 
 const ProductList: React.FC = () => {
   const [isContentLoaded, setContentLoaded] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [camisetaBrancaDisplay, setCamisetaBrancaDisplay] = useState(true);
+  const [camisetaAzulDisplay, setCamisetaAzulDisplay] = useState(true);
+  const [camisetaAmarelaDisplay, setCamisetaAmarelaDisplay] = useState(true);
+
+  const ReturnCamisetaBranca: React.FC = () => {
+    if (camisetaBrancaDisplay) {
+      return (
+        <Image
+          src={BrancaFrente}
+          height={300}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaBrancaDisplay(!camisetaBrancaDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={BrancaCostas}
+          height={320}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaBrancaDisplay(!camisetaBrancaDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    }
+  };
+
+  const ReturnCamisetaAmarela: React.FC = () => {
+    if (camisetaAmarelaDisplay) {
+      return (
+        <Image
+          src={AmarelaFrente}
+          height={300}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaAmarelaDisplay(!camisetaAmarelaDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={AmarelaCostas}
+          height={300}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaAmarelaDisplay(!camisetaAmarelaDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    }
+  };
+
+  const ReturnCamisetaAzul: React.FC = () => {
+    if (camisetaAzulDisplay) {
+      return (
+        <Image
+          src={AzulFrente}
+          height={300}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaAzulDisplay(!camisetaAzulDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={AzulCostas}
+          height={300}
+          width={280}
+          alt="Modelo branco da camiseta comemorativa da copa do ZDN"
+          onClick={() => {
+            setCamisetaAzulDisplay(!camisetaAzulDisplay);
+          }}
+          style={{ cursor: "pointer" }}
+        />
+      );
+    }
+  };
 
   useEffect(() => {
     setContentLoaded(true);
@@ -24,11 +125,7 @@ const ProductList: React.FC = () => {
       <Row>
         <Col>
           <Center>
-            <Image
-              src="https://i.ibb.co/f87hKW5/camisa-branca-png.png"
-              boxSize={"25rem"}
-              alt="Modelo branco da camiseta comemorativa da copa do ZDN"
-            />
+            <ReturnCamisetaBranca />
           </Center>
 
           <Center>
@@ -61,11 +158,7 @@ const ProductList: React.FC = () => {
         <Center mt={10}>
           <Col>
             <Center>
-              <Image
-                src="https://i.ibb.co/wS85xP6/camisa-azul-png.png"
-                boxSize={"25rem"}
-                alt="Modelo azul da camiseta comemorativa da copa do ZDN"
-              />
+              <ReturnCamisetaAzul />
             </Center>
 
             <Center>
@@ -99,11 +192,7 @@ const ProductList: React.FC = () => {
         <Center mt={10} mb={10}>
           <Col style={{ marginTop: 20 }}>
             <Center>
-              <Image
-                src="https://i.ibb.co/GWBBn9q/camisa-amarela-png.png"
-                boxSize={"25rem"}
-                alt="Modelo amarelo da camiseta comemorativa da copa do ZDN"
-              />
+              <ReturnCamisetaAmarela />
             </Center>
 
             <Center>

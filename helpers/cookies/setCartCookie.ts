@@ -1,5 +1,5 @@
-import { setCookie } from "typescript-cookie";
+import Cookies from "js-cookie";
 
 export const setCartCookie = (id: string) => {
-  return setCookie("zdn-cart-cookie", id);
+  return Cookies.set("zdn-cart-cookie", id);
 };

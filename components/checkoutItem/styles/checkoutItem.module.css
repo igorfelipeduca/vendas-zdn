@@ -1,0 +1,13 @@
+.checkoutItemWrapper {
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    border: .7px solid rgb(176, 176, 176);
+    color: #3c3d3e;
+}
+
+.checkoutItemWrapper b {
+    margin-left: 5px;
+}

@@ -1,12 +1,25 @@
-import { Button, Center, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Button, Center, Heading, Text, useToast } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Header from "../components/layout/header";
 import styles from "../styles/Home.module.css";
 import ProductList from "../components/productList";
 import { FaTwitter } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({
+      title: "Info",
+      description: "Clique em qualquer camiseta para ver seu outro lado.",
+      status: "info",
+      duration: 9000,
+      isClosable: true,
+    });
+  }, []);
+
   return (
     <>
       <Header />

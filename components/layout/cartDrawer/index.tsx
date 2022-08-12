@@ -12,14 +12,13 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import axios from "axios";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Col, Input, Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { procurarCarrinho } from "../../../api/routes/procurarCarrinho";
 import { removerCamiseta } from "../../../api/routes/removerCamiseta";
 import { getCartCookie } from "../../../helpers/cookies/getCartCookie";
-import { ApiResponseType } from "../../../types/ApiResponseType";
 import { CamisetaType } from "../../../types/CamisetaType";
 
 const CartDrawer: React.FC = () => {
@@ -69,6 +68,10 @@ const CartDrawer: React.FC = () => {
     removerCamiseta(camisetaId, compraId).then((result) => {
       if (result.status === 200) document.location.reload();
     });
+  };
+
+  const prosseguirButtonDisabled = () => {
+    return getCartCookie() ? false : true;
   };
 
   useEffect(() => {
@@ -229,7 +232,15 @@ const CartDrawer: React.FC = () => {
               <Button variant="outline" mr={3} onClick={onClose}>
                 Cancelar
               </Button>
-              <Button colorScheme="green">Prosseguir</Button>
+
+              <Link href={"/checkout"}>
+                <Button
+                  colorScheme="green"
+                  disabled={prosseguirButtonDisabled()}
+                >
+                  Prosseguir
+                </Button>
+              </Link>
             </DrawerFooter>
           </DrawerBody>
         </DrawerContent>

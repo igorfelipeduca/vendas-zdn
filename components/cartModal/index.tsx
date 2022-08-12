@@ -17,15 +17,17 @@ import {
   Spinner,
   Text,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { criarCarrinho } from "../../api/routes/criarCarrinho";
 import { setCartCookie } from "../../helpers/cookies/setCartCookie";
 import { CarrinhoType } from "../../types/CarrinhoType";
 
 import { getCartCookie } from "../../helpers/cookies/getCartCookie";
 import { atualizarCarrinho } from "../../api/routes/atualizarCarrinho";
+import { encontrarNumeros } from "../../api/routes/encontrarNumeros";
 
 type cartModalProps = {
   children: JSX.Element;
@@ -38,6 +40,8 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
   const [tshirtNumber, setTshirtNumber] = useState("");
   const [isLoadingHidden, setLoadingHidden] = useState(true);
   const [areButtonsDisabled, setButtonsDisabled] = useState(false);
+  const [usedNumber, setUsedNumber] = useState(false);
+  const toast = useToast();
 
   type returnTShirtProps = {
     color: string;
@@ -153,6 +157,30 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
     }
   };
 
+  useEffect(() => {
+    const len = tshirtNumber.length;
+    console.log({ len });
+    if (tshirtNumber !== "" && tshirtNumber.length > 1) {
+      encontrarNumeros().then((result) => {
+        console.log({ tshirtNumber });
+
+        if (result.body.includes(tshirtNumber)) {
+          toast({
+            title: `O número ${tshirtNumber} está indisponível`,
+            description: `O número ${tshirtNumber} já está sendo usado por outra pessoa. Escolha outro número.`,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          setUsedNumber(true);
+        } else {
+          if (usedNumber) setUsedNumber(false);
+        }
+      });
+    }
+  }, [tshirtNumber]);
+
   return (
     <>
       <Box onClick={onOpen}>{children}</Box>
@@ -206,7 +234,7 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
             <Button
               colorScheme="green"
               onClick={postCart}
-              disabled={areButtonsDisabled}
+              disabled={areButtonsDisabled || usedNumber}
             >
               Adicionar
             </Button>
