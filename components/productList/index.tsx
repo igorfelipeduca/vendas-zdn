@@ -116,6 +116,13 @@ const ProductList: React.FC = () => {
     }
   };
 
+  const convertToBRL = (amount: number) => {
+    return amount.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
+
   useEffect(() => {
     setContentLoaded(true);
   }, []);
@@ -136,7 +143,7 @@ const ProductList: React.FC = () => {
 
           <Center>
             <Text fontSize={"2xl"} fontWeight="bold">
-              R$ 00,00
+              {convertToBRL(0)}
             </Text>
           </Center>
 
@@ -169,7 +176,7 @@ const ProductList: React.FC = () => {
 
             <Center>
               <Text fontSize={"2xl"} fontWeight="bold">
-                R$ 00,00
+                {convertToBRL(0)}
               </Text>
             </Center>
 
@@ -203,7 +210,7 @@ const ProductList: React.FC = () => {
 
             <Center>
               <Text fontSize={"2xl"} fontWeight="bold">
-                R$ 00,00
+                {convertToBRL(0)}
               </Text>
             </Center>
 
