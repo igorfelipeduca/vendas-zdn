@@ -2,14 +2,8 @@ import { Row, Col } from "reactstrap";
 import Image from "next/image";
 import Zdn from "../../../assets/zdn.png";
 import CartDrawer from "../cartDrawer";
-import { FC } from "react";
 
-type headerProps = {
-  hiddenCart?: boolean;
-  breadcrumb?: JSX.Element;
-};
-
-const Header: React.FC<headerProps> = ({ hiddenCart, breadcrumb }) => {
+const Header: React.FC = () => {
   return (
     <>
       <Row
@@ -28,11 +22,9 @@ const Header: React.FC<headerProps> = ({ hiddenCart, breadcrumb }) => {
             id="zdn-header-img"
             alt="ZDN Logo"
           />
-
-          <div>{breadcrumb ? breadcrumb : <></>}</div>
         </div>
 
-        <div hidden={hiddenCart}>
+        <div>
           <CartDrawer />
         </div>
       </Row>

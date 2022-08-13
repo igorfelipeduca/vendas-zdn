@@ -238,7 +238,7 @@ const CartDrawer: React.FC = () => {
                   colorScheme="green"
                   disabled={prosseguirButtonDisabled()}
                 >
-                  Prosseguir
+                  Concluir
                 </Button>
               </Link>
             </DrawerFooter>

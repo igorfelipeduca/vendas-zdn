@@ -1,26 +1,64 @@
-import {
-  BreadcrumbLink,
-  Center,
-  Heading,
-  Breadcrumb,
-  BreadcrumbItem,
-  Text,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { procurarCarrinho } from "../../api/routes/procurarCarrinho";
-import CheckoutItem from "../../components/checkoutItem";
-import Header from "../../components/layout/header";
 import { getCartCookie } from "../../helpers/cookies/getCartCookie";
-import styles from "../../styles/Home.module.css";
+import styles from "./styles/Checkout.module.css";
 import { CamisetaType } from "../../types/CamisetaType";
+import CheckoutHeader from "../../components/layout/checkoutHeader";
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Heading,
+  Input,
+  InputGroup,
+  Text,
+} from "@chakra-ui/react";
+import CheckoutItem from "./atoms/checkoutItem";
+import CheckoutAside from "./components/checkoutAside";
+
+const useMediaQuery = (width: number) => {
+  const [targetReached, setTargetReached] = useState(false);
+
+  const updateTarget = useCallback((e: any) => {
+    if (e.matches) {
+      setTargetReached(true);
+    } else {
+      setTargetReached(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia(`(max-width: ${width}px)`);
+    media.addListener(updateTarget);
+
+    // Check on mount (callback is not called until a change occurs)
+    if (media.matches) {
+      setTargetReached(true);
+    }
+
+    return () => media.removeListener(updateTarget);
+  }, []);
+
+  return targetReached;
+};
 
 const Checkout: React.FC = () => {
+  const isBreakpoint = useMediaQuery(768);
+  const [itemAmount, setItemAmount] = useState(0);
   const [items, setItems] = useState<CamisetaType[]>([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (getCartCookie()) {
       procurarCarrinho(getCartCookie()).then((result) => {
+        setItemAmount(result.body.camisetas.length);
+
         const items: CamisetaType[] = [];
 
         result.body.camisetas.map((camiseta: any) => {
@@ -48,76 +86,166 @@ const Checkout: React.FC = () => {
           ]);
         });
       });
-    } else document.location.href = "/";
+    } else {
+      document.location.href = "/";
+    }
   }, []);
 
-  const ReturnBreadcrumb: React.FC = () => {
+  if (isBreakpoint) {
     return (
-      <Breadcrumb ml={5}>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Início</BreadcrumbLink>
-        </BreadcrumbItem>
+      <>
+        <CheckoutHeader itemAmount={itemAmount} />
 
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/checkout" color={"red.500"}>
-            Checkout
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
+        <Helmet>
+          <title>ZDN</title>
+          <meta
+            name="description"
+            content="Site oficial de vendas do ZDN"
+          ></meta>
+        </Helmet>
+
+        <div className={styles.container}>
+          <Box w={"100%"}>
+            <Box alignItems={"center"} p={10}>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading as={"h3"} fontSize={"lg"} mr={5} fontWeight={"bold"}>
+                  1
+                </Heading>
+
+                <Heading as={"h3"} fontSize={"lg"} fontWeight={"bold"}>
+                  Informações do comprador
+                </Heading>
+              </Box>
+
+              <Box mt={4}>
+                <FormControl>
+                  <FormLabel>Endereço de email</FormLabel>
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <FormHelperText>
+                    Seu email não será compartilhado.
+                  </FormHelperText>
+                </FormControl>
+
+                <FormControl mt={5}>
+                  <FormLabel>Nome</FormLabel>
+                  <Input
+                    type={"text"}
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </Box>
+            </Box>
+
+            <Divider />
+
+            <Box alignItems={"center"} p={10}>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading as={"h3"} fontSize={"lg"} mr={5} fontWeight={"bold"}>
+                  2
+                </Heading>
+
+                <Heading as={"h3"} fontSize={"lg"} fontWeight={"bold"}>
+                  Revisar itens
+                </Heading>
+              </Box>
+
+              <Box mt={4}>
+                {items.map((item) => (
+                  <CheckoutItem
+                    color={item.cor}
+                    name={item.nome}
+                    number={item.numero}
+                  />
+                ))}
+              </Box>
+            </Box>
+          </Box>
+
+          <CheckoutAside items={items} />
+        </div>
+      </>
     );
-  };
+  } else {
+    return (
+      <>
+        <CheckoutHeader itemAmount={itemAmount} />
 
-  const returnTotalCost = () => {
-    const moneyAmount = 36 * items.length;
+        <Helmet>
+          <title>ZDN</title>
+          <meta
+            name="description"
+            content="Site oficial de vendas do ZDN"
+          ></meta>
+        </Helmet>
 
-    return moneyAmount.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  };
+        <div className={styles.container} style={{ display: "flex" }}>
+          <Box w={"75%"}>
+            <Box alignItems={"center"} p={10}>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading as={"h3"} fontSize={"lg"} mr={5} fontWeight={"bold"}>
+                  1
+                </Heading>
 
-  return (
-    <>
-      <Header breadcrumb={<ReturnBreadcrumb />} hiddenCart />
+                <Heading as={"h3"} fontSize={"lg"} fontWeight={"bold"}>
+                  Informações do comprador
+                </Heading>
+              </Box>
 
-      <Helmet>
-        <title>ZDN</title>
-        <meta name="description" content="Site oficial de vendas do ZDN"></meta>
-      </Helmet>
-      <div className={styles.container}>
-        <Center>
-          <Heading
-            as="h2"
-            size="xl"
-            fontWeight={"bold"}
-            mt={10}
-            className="red-text-color"
-          >
-            CHECKOUT
-          </Heading>
-        </Center>
+              <Box mt={4}>
+                <FormControl>
+                  <FormLabel>Endereço de email</FormLabel>
+                  <Input type="email" />
+                  <FormHelperText>
+                    Seu email não será compartilhado.
+                  </FormHelperText>
+                </FormControl>
 
-        <Center>
-          <div>
-            {items.map((item) => (
-              <CheckoutItem
-                key={item.id}
-                color={item.cor}
-                name={item.nome}
-                number={item.numero}
-              />
-            ))}
-          </div>
-        </Center>
+                <FormControl mt={5}>
+                  <FormLabel>Nome</FormLabel>
+                  <Input type={"text"} />
+                </FormControl>
+              </Box>
+            </Box>
 
-        <Center>
-          <Text fontSize={"2xl"} color="red.500" fontWeight={"bolder"}>
-            TOTAL: {returnTotalCost()}
-          </Text>
-        </Center>
-      </div>
-    </>
-  );
+            <Divider />
+
+            <Box alignItems={"center"} p={10}>
+              <Box display={"flex"} alignItems={"center"}>
+                <Heading as={"h3"} fontSize={"lg"} mr={5} fontWeight={"bold"}>
+                  2
+                </Heading>
+
+                <Heading as={"h3"} fontSize={"lg"} fontWeight={"bold"}>
+                  Revisar itens
+                </Heading>
+              </Box>
+
+              <Box mt={4}>
+                {items.map((item) => (
+                  <CheckoutItem
+                    color={item.cor}
+                    name={item.nome}
+                    number={item.numero}
+                  />
+                ))}
+              </Box>
+            </Box>
+          </Box>
+
+          <CheckoutAside items={items} />
+        </div>
+      </>
+    );
+  }
 };
 
 export default Checkout;

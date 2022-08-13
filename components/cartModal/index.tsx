@@ -159,10 +159,15 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
 
   useEffect(() => {
     const len = tshirtNumber.length;
-    console.log({ len });
+
     if (tshirtNumber !== "" && tshirtNumber.length > 1) {
+      setLoadingHidden(false);
+      setButtonsDisabled(true);
+
       encontrarNumeros().then((result) => {
-        console.log({ tshirtNumber });
+        const resultBody = result.body;
+
+        console.log({ tshirtNumber, resultBody });
 
         if (result.body.includes(tshirtNumber)) {
           toast({
@@ -174,8 +179,14 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
           });
 
           setUsedNumber(true);
+          setLoadingHidden(true);
+          setButtonsDisabled(true);
         } else {
-          if (usedNumber) setUsedNumber(false);
+          if (usedNumber) {
+            setUsedNumber(false);
+            setLoadingHidden(true);
+            setButtonsDisabled(false);
+          }
         }
       });
     }
@@ -223,18 +234,13 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
           </Center>
 
           <ModalFooter>
-            <Button
-              colorScheme="red"
-              mr={3}
-              onClick={onClose}
-              disabled={areButtonsDisabled}
-            >
+            <Button colorScheme="red" mr={3} onClick={onClose}>
               Cancelar
             </Button>
             <Button
               colorScheme="green"
               onClick={postCart}
-              disabled={areButtonsDisabled || usedNumber}
+              disabled={areButtonsDisabled}
             >
               Adicionar
             </Button>
