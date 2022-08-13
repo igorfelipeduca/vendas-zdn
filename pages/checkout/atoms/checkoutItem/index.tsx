@@ -50,11 +50,17 @@ type checkoutItemProps = {
   color: string;
   name: string;
   number: string;
+  id?: string;
 };
 
-const CheckoutItem: React.FC<checkoutItemProps> = ({ color, name, number }) => {
+const CheckoutItem: React.FC<checkoutItemProps> = ({
+  color,
+  name,
+  number,
+  id,
+}) => {
   return (
-    <Box className={styles.itemCard} style={{ display: "flex" }}>
+    <Box className={styles.itemCard} style={{ display: "flex" }} key={id}>
       <Box>
         <Text fontSize={"sm"}>Itens retirados em Caetité (BA)</Text>
 

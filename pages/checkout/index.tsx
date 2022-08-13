@@ -164,6 +164,7 @@ const Checkout: React.FC = () => {
                     color={item.cor}
                     name={item.nome}
                     number={item.numero}
+                    id={item.id}
                   />
                 ))}
               </Box>
@@ -235,6 +236,7 @@ const Checkout: React.FC = () => {
                     color={item.cor}
                     name={item.nome}
                     number={item.numero}
+                    id={item.id}
                   />
                 ))}
               </Box>
