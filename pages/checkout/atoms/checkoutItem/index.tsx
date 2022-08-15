@@ -35,17 +35,6 @@ const ReturnTshirtImage: React.FC<tshirtImageProps> = ({ color }) => {
   } else return <></>;
 };
 
-// const returnCapitalLetter = (word: string) => {
-//   const newWord: string[] = [];
-
-//   for (var i = 0; i < word.length; i++) {
-//     if (i === 0) newWord.push(word[i].toUpperCase());
-//     else newWord.push(word[i]);
-//   }
-
-//   return newWord.join("");
-// };
-
 type checkoutItemProps = {
   color: string;
   name: string;

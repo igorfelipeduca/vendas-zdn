@@ -7,23 +7,14 @@ type checkoutAsideProps = {
 };
 
 const CheckoutAside: React.FC<checkoutAsideProps> = ({ items }) => {
-  // const returnTotalCost = () => {
-  //   if (items !== undefined || null) {
-  //     const moneyAmount = 0 * items.length;
+  const returnTotalCost = () => {
+    const moneyAmount = 0 * items.length;
 
-  //     return moneyAmount.toLocaleString("pt-BR", {
-  //       style: "currency",
-  //       currency: "BRL",
-  //     });
-  //   } else {
-  //     const moneyAmount = 0;
-
-  //     return moneyAmount.toLocaleString("pt-BR", {
-  //       style: "currency",
-  //       currency: "BRL",
-  //     });
-  //   }
-  // };
+    return moneyAmount.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
 
   return (
     <Box className={styles.resumoPedido} p={5} position={"static"}>
@@ -61,7 +52,7 @@ const CheckoutAside: React.FC<checkoutAsideProps> = ({ items }) => {
             Total do pedido:
           </Text>
           <Text fontSize={"xl"} color={"red.600"} fontWeight={"bold"}>
-            R$ 0,00
+            {returnTotalCost()}
           </Text>
         </Box>
       </Box>
