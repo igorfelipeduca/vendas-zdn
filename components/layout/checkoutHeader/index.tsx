@@ -4,6 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,32 +27,25 @@ const CheckoutHeader: React.FC<checkoutHeaderProps> = ({ itemAmount }) => {
         mb={5}
       >
         <Box display={"flex"} alignItems="center">
-          <Image
-            src={Zdn}
-            height={50}
-            width={50}
-            id="zdn-header-img"
-            alt="ZDN Logo"
-          />
+          <Link href={"/"}>
+            <Image
+              src={Zdn}
+              height={50}
+              width={50}
+              id="zdn-header-img"
+              alt="ZDN Logo"
+              style={{ cursor: "pointer" }}
+            />
+          </Link>
         </Box>
 
         <Box>
           {itemAmount > 1 ? (
-            <Heading
-              as="h2"
-              size="lg"
-              fontWeight={"bold"}
-              className="red-text-color"
-            >
+            <Text fontSize={"2xl"} fontWeight={"bold"}>
               Finalizar a compra ({itemAmount} itens)
-            </Heading>
+            </Text>
           ) : (
-            <Heading
-              as="h2"
-              size="lg"
-              fontWeight={"bold"}
-              className="red-text-color"
-            >
+            <Heading as="h2" size="lg">
               Finalizar a compra ({itemAmount} item)
             </Heading>
           )}
@@ -64,6 +58,7 @@ const CheckoutHeader: React.FC<checkoutHeaderProps> = ({ itemAmount }) => {
             fontWeight={"bold"}
             className="red-text-color"
             cursor={"pointer"}
+            display={"none"}
           >
             <Link href={"/"}>
               <FiHome />

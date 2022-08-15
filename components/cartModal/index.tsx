@@ -182,15 +182,13 @@ const CartModal: React.FC<cartModalProps> = ({ children, color }) => {
           setLoadingHidden(true);
           setButtonsDisabled(true);
         } else {
-          if (usedNumber) {
-            setUsedNumber(false);
-            setLoadingHidden(true);
-            setButtonsDisabled(false);
-          }
+          setUsedNumber(false);
+          setLoadingHidden(true);
+          setButtonsDisabled(false);
         }
       });
     }
-  }, [tshirtNumber]);
+  }, [tshirtNumber, toast, usedNumber]);
 
   return (
     <>

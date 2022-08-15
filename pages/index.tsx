@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       duration: 9000,
       isClosable: true,
     });
-  }, []);
+  }, [toast]);
 
   return (
     <>

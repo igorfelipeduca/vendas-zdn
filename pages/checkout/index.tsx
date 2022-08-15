@@ -7,16 +7,12 @@ import { CamisetaType } from "../../types/CamisetaType";
 import CheckoutHeader from "../../components/layout/checkoutHeader";
 import {
   Box,
-  Button,
-  Center,
   Divider,
   FormControl,
   FormHelperText,
   FormLabel,
   Heading,
   Input,
-  InputGroup,
-  Text,
 } from "@chakra-ui/react";
 import CheckoutItem from "./atoms/checkoutItem";
 import CheckoutAside from "./components/checkoutAside";
@@ -42,7 +38,7 @@ const useMediaQuery = (width: number) => {
     }
 
     return () => media.removeListener(updateTarget);
-  }, []);
+  }, [updateTarget, width]);
 
   return targetReached;
 };
@@ -160,12 +156,14 @@ const Checkout: React.FC = () => {
 
               <Box mt={4}>
                 {items.map((item) => (
-                  <CheckoutItem
-                    color={item.cor}
-                    name={item.nome}
-                    number={item.numero}
-                    id={item.id}
-                  />
+                  <div key={item.id}>
+                    <CheckoutItem
+                      color={item.cor}
+                      name={item.nome}
+                      number={item.numero}
+                      id={item.id}
+                    />
+                  </div>
                 ))}
               </Box>
             </Box>
