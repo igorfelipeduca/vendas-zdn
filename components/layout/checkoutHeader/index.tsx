@@ -45,9 +45,9 @@ const CheckoutHeader: React.FC<checkoutHeaderProps> = ({ itemAmount }) => {
               Finalizar a compra ({itemAmount} itens)
             </Text>
           ) : (
-            <Heading as="h2" size="lg">
+            <Text fontSize={"2xl"} fontWeight={"bold"}>
               Finalizar a compra ({itemAmount} item)
-            </Heading>
+            </Text>
           )}
         </Box>
 

@@ -4,9 +4,13 @@ import styles from "../../styles/Checkout.module.css";
 
 type checkoutAsideProps = {
   items: CamisetaType[];
+  endPurchase: () => void;
 };
 
-const CheckoutAside: React.FC<checkoutAsideProps> = ({ items }) => {
+const CheckoutAside: React.FC<checkoutAsideProps> = ({
+  items,
+  endPurchase,
+}) => {
   const returnTotalCost = () => {
     if (items) {
       const moneyAmount = 0 * items.length;
@@ -28,9 +32,16 @@ const CheckoutAside: React.FC<checkoutAsideProps> = ({ items }) => {
   return (
     <Box className={styles.resumoPedido} p={5} position={"static"}>
       <Center>
-        <Button colorScheme="red" w={"100%"}>
-          Finalizar pedido
-        </Button>
+        <Box>
+          <Button colorScheme="red" w={"100%"} onClick={endPurchase}>
+            Finalizar pedido
+          </Button>
+
+          <Text fontSize={"sm"} mt={3}>
+            Em caso de dúvidas, problemas ou modificações na compra, procure um
+            membro do ZDN.
+          </Text>
+        </Box>
       </Center>
 
       <Divider mt={5} />

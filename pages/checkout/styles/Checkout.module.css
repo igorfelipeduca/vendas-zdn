@@ -111,7 +111,7 @@
   .resumoPedido {
     border: 1px solid #eaeaea;
     width: 20rem;
-    max-height: 20rem;
+    max-height: 25rem;
     position: sticky;
   }
 
