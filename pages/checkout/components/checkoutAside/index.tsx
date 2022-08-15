@@ -8,7 +8,7 @@ type checkoutAsideProps = {
 
 const CheckoutAside: React.FC<checkoutAsideProps> = ({ items }) => {
   const returnTotalCost = () => {
-    if (items) {
+    if (items !== undefined || null) {
       const moneyAmount = 0 * items.length;
 
       return moneyAmount.toLocaleString("pt-BR", {
