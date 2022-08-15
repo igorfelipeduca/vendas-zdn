@@ -230,12 +230,14 @@ const Checkout: React.FC = () => {
 
               <Box mt={4}>
                 {items.map((item) => (
-                  <CheckoutItem
-                    color={item.cor}
-                    name={item.nome}
-                    number={item.numero}
-                    id={item.id}
-                  />
+                  <div key={item.id}>
+                    <CheckoutItem
+                      color={item.cor}
+                      name={item.nome}
+                      number={item.numero}
+                      id={item.id}
+                    />
+                  </div>
                 ))}
               </Box>
             </Box>
