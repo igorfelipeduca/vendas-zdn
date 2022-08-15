@@ -244,7 +244,9 @@ const Checkout: React.FC = () => {
           </Box>
         </Box>
 
-        <CheckoutAside items={items} endPurchase={endPurchase} />
+        <Box mb={isBreakpoint ? 0 : 5}>
+          <CheckoutAside items={items} endPurchase={endPurchase} />
+        </Box>
       </div>
     </>
   );
