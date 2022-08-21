@@ -46,12 +46,6 @@ const useMediaQuery = (width: number) => {
   return targetReached;
 };
 
-function validateEmail(email: string) {
-  const res =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return res.test(String(email).toLowerCase());
-}
-
 const Checkout: React.FC = () => {
   const isBreakpoint = useMediaQuery(768);
   const [itemAmount, setItemAmount] = useState(0);
@@ -98,19 +92,6 @@ const Checkout: React.FC = () => {
     }
   }, []);
 
-  const endPurchase = () => {
-    if (name === "") setNameInvalid(true);
-    if (email === "") setEmailInvalid(true);
-
-    if (name !== "" && email !== "") {
-      if (!validateEmail(email)) setEmailInvalid(true);
-      else {
-        if (isEmailInvalid) setEmailInvalid(false);
-        alert("a");
-      }
-    }
-  };
-
   return (
     <>
       <CheckoutHeader itemAmount={itemAmount} />
@@ -155,7 +136,7 @@ const Checkout: React.FC = () => {
                 </FormHelperText>
 
                 <Box mt={5}>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel>Nome do titular do pix</FormLabel>
                   <Input
                     type={"text"}
                     value={name}
@@ -167,6 +148,9 @@ const Checkout: React.FC = () => {
                     isInvalid={isNameInvalid}
                     required
                   />
+                  <FormHelperText>
+                    Nome que será exibido quando recebermos o pix.
+                  </FormHelperText>
                 </Box>
               </FormControl>
             </Box>
@@ -245,7 +229,15 @@ const Checkout: React.FC = () => {
         </Box>
 
         <Box mb={isBreakpoint ? 0 : 5}>
-          <CheckoutAside items={items} endPurchase={endPurchase} />
+          <CheckoutAside
+            items={items}
+            setNameInvalid={setNameInvalid}
+            setEmailInvalid={setEmailInvalid}
+            name={name}
+            email={email}
+            isEmailInvalid={isEmailInvalid}
+            isNameInvalid={isNameInvalid}
+          />
         </Box>
       </div>
     </>
